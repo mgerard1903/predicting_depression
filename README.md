@@ -1,6 +1,6 @@
-# Exploratory Data Analysis of Student Depression Dataset
+# Predicting Student Depression Risk Using Machine Learning
 
-_A deep dive EDA on student depression risk factors using survey and activity metrics to uncover patterns and insights._
+_A supervised learning pipeline to identify at-risk students for depression based on survey data and activity metrics._
 
 ## Table of Contents
 
@@ -17,28 +17,28 @@ _A deep dive EDA on student depression risk factors using survey and activity me
 
 ## Description
 
-This project performs a comprehensive exploratory data analysis on the student depression dataset. We examine distributions, correlations, and relationships among survey responses and activity metrics to identify patterns linked to depression risk.
+This project develops a predictive model to screen for depression in students using survey responses, academic performance, and activity data. We explore data preprocessing, feature selection, and apply classifiers (logistic regression, random forest, SVM) with hyperparameter tuning to achieve accurate risk predictions.
 
 ## Key Features
 
-- **Univariate Analysis**: Histograms, boxplots, and density plots for each feature.  
-- **Bivariate Analysis**: Scatter plots, bar charts, and violin plots comparing features against depression status.  
-- **Correlation Analysis**: Heatmaps and pairplots to reveal feature interdependencies.  
-- **Missing Value Assessment**: Visualization of missingness patterns and imputation strategies.  
-- **Dimensionality Reduction**: PCA and t-SNE projections for pattern discovery.  
-- **Outlier Detection**: Identification and visualization of anomalous observations.
+- **Data Preprocessing**: Handling missing values, encoding categorical variables, and scaling numerical features.  
+- **Exploratory Analysis**: Visualizations of feature distributions and correlations with depression outcomes.  
+- **Feature Selection**: Recursive feature elimination and importance ranking to identify key predictors.  
+- **Modeling**: Logistic Regression, Random Forest, SVM with GridSearchCV for hyperparameter optimization.  
+- **Evaluation**: Metrics including accuracy, precision, recall, F1-score, ROC AUC, and confusion matrices.  
+- **Interpretability**: SHAP value analysis to explain individual risk predictions.
 
 ## Tech Stack
 
 - **Language:** Python 3.8+  
-- **Notebook:** Jupyter Notebook (`Assignment_1.ipynb`)  
-- **Libraries:** pandas, numpy, matplotlib, seaborn, plotly, scikit-learn  
+- **Notebook:** Jupyter Notebook (`Assignment_2.ipynb`)  
+- **Libraries:** pandas, numpy, scikit-learn, matplotlib, seaborn, shap  
 
 ## Installation
 
 ```bash
-git clone https://github.com/your-username/student-depression-eda.git
-cd student-depression-eda
+git clone https://github.com/your-username/student-depression-prediction.git
+cd student-depression-prediction
 python -m venv venv
 source venv/bin/activate  # macOS/Linux
 venv\Scripts\activate   # Windows
@@ -48,38 +48,41 @@ pip install -r requirements.txt
 ## Datasets
 
 - **`student_depression_dataset.csv`**: Survey and activity metrics of students (features include sleep hours, study time, social interaction, past mental health history, etc.)  
-- Place the CSV in the `data/` directory before running analysis.
+- Place the CSV file in the `data/` directory.
 
 ## Usage
 
-1. **Run the EDA notebook**:  
+1. **Run the analysis notebook**:  
    ```bash
-   jupyter notebook Assignment_1.ipynb
+   jupyter notebook Assignment_2.ipynb
    ```  
-2. **Explore sections**:  
-   - Data overview and summary statistics  
-   - Feature distributions and missing value visualizations  
-   - Correlation heatmap and pairwise plots  
-   - PCA and t-SNE visualizations  
-   - Outlier and anomaly detection  
+2. **Follow sections**:  
+   - Data loading and cleaning  
+   - Exploratory data analysis  
+   - Feature engineering and selection  
+   - Model training and evaluation  
+   - SHAP interpretability analysis  
+3. **View outputs** in `outputs/` folder: plots, model reports, and SHAP visualizations.
 
 ## Project Structure
 
 ```
-student-depression-eda/
-├── README_EDA.md               # This file
-├── assignment_1.ipynb          # EDA notebook
+student-depression-prediction/
+├── README.md                    # This file
 ├── data/
 │   └── student_depression_dataset.csv
-├── requirements.txt            # Python dependencies
-└── outputs/
-    ├── histograms/
-    ├── heatmaps/
-    └── pca_tsne_plots/
+├── Assignment_2.ipynb           # Analysis notebook
+├── requirements.txt             # Python dependencies
+├── outputs/
+│   ├── correlation_heatmap.png
+│   ├── roc_curves.png
+│   └── shap_summary.png
+└── models/
+    └── best_model.pkl
 ```
 
 ## Configuration
 
-- **Visualization Styles**: Modify seaborn themes and plotly templates in the notebook.  
-- **PCA Components**: Adjust number of components for dimensionality reduction.  
-- **Outlier Thresholds**: Change z-score or IQR parameters for outlier detection.
+- **Test Size**: Default 20%; adjust in notebook split settings.  
+- **Random State**: Set seed for reproducibility.  
+- **Hyperparameter Grids**: Modify search spaces for classifiers in GridSearchCV.
